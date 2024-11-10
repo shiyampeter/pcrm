@@ -1,0 +1,3 @@
+ALTER TABLE `users` CHANGE `user_id` `id` INT NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `users` CHANGE `user_password` `password` VARCHAR(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL;
