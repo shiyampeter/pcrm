@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 use App\Models\ActivityLog;
+use App\Models\WorkCategory;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 use Storage;
 use Intervention\Image\Facades\Image;
+use Illuminate\Http\Request;
 
 
 class Controller extends BaseController
@@ -15,6 +17,12 @@ class Controller extends BaseController
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
     public $error;
+
+
+    protected $sort_column = 'created_at';
+    protected $sort_order = 'DESC';
+    protected $pageNumber = 1;
+    protected $perPage = 15;
 
     public function storeImage($image, $folder, $quality = 90)
     {
@@ -93,5 +101,17 @@ class Controller extends BaseController
         }
         curl_close($ch);
         return $result;
+    }
+
+
+    public function essential(Request $request)
+    {
+        $type = $request->get('type');
+        if ($type == 'workCategory') {
+            $workCategory = WorkCategory::where('work_del_status', 0)->select('work_id as value', 'work_name as label')->get();
+            return $this->returnSuccess($workCategory, 'Work Category Retrived Successfully');
+        } else {
+            return $this->returnError('Type Not Found');
+        }
     }
 }

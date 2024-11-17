@@ -1,3 +1,15 @@
 ALTER TABLE `users` CHANGE `user_id` `id` INT NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `users` CHANGE `user_password` `password` VARCHAR(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL;
+
+ALTER TABLE `work_category` CHANGE `work_id` `work_id` INT NOT NULL AUTO_INCREMENT;
+
+
+ALTER TABLE `sub_work_category` ADD `sub_work_alert_status` TINYINT NOT NULL AFTER `sub_work_validity_date`;
+
+ALTER TABLE `sub_work_category` ADD `sub_work_validity_status` TINYINT NOT NULL AFTER `sub_work_incentive_price`;
+
+
+ALTER TABLE `sub_work_category` CHANGE `sub_work_id` `sub_work_id` INT NOT NULL AUTO_INCREMENT, add PRIMARY KEY (`sub_work_id`);
+
+ALTER TABLE `sub_work_category` ADD `status_id` INT NULL AFTER `sub_work_alert_days`;
