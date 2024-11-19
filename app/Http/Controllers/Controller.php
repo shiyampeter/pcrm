@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 use App\Models\ActivityLog;
+use App\Models\SubWorkCategory;
+use App\Models\SubWorkCategoryStatus;
 use App\Models\WorkCategory;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
@@ -110,6 +112,27 @@ class Controller extends BaseController
         if ($type == 'workCategory') {
             $workCategory = WorkCategory::where('work_del_status', 0)->select('work_id as value', 'work_name as label')->get();
             return $this->returnSuccess($workCategory, 'Work Category Retrived Successfully');
+        } else if ($type == 'workSubCategory') {
+            $subWorkCategory = SubWorkCategory::where(['sub_work_del_status' => 0, 'sub_work_cate_id' => $request->get('work_id')])->select(
+                'sub_work_id as value',
+                'sub_work_cate_name as label',
+                'sub_work_work_price',
+                'sub_work_online_price',
+                'sub_work_expense_price',
+                'sub_work_discount_price',
+                'sub_work_incentive_price',
+                'sub_work_validity_status',
+                'sub_work_validity',
+                'sub_work_validity_date',
+                'sub_work_alert_status',
+                'sub_work_alert_days_type',
+                'sub_work_alert_days',
+                'status_id',
+            )->get();
+            return $this->returnSuccess($subWorkCategory, 'Sub Work Category Retrived Successfully');
+        } else if ($type == 'workSubCategoryStatus') {
+            $subWorkCategoryStatus = SubWorkCategoryStatus::where('status_deleted', 0)->select('id as value', 'status as label')->get();
+            return $this->returnSuccess($subWorkCategoryStatus, 'Sub Work Category Status Retrived Successfully');
         } else {
             return $this->returnError('Type Not Found');
         }

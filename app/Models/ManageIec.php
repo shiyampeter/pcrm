@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class ManageIec extends Model
 {
 
-    protected $table = 'sub_work_category';
+    protected $table = 'manage_iec';
     protected $primaryKey = 'iec_q_id';
     protected $casts = [
         'sub_work_work_price' => 'array',
@@ -28,13 +28,17 @@ class ManageIec extends Model
         'iec_q_location',
         'iec_q_feedback',
         'iec_q_amount',
+        'iec_q_discount',
         'iec_q_online_payment',
         'iec_online_payment',
+        'iec_online_payment_gothrough',
         'iec_q_adv_amount',
         'iec_q_expense',
+        'iec_q_office_expense',
         'iec_q_income',
         'iec_paid',
         'iec_date_of_pay',
+        'iec_q_work_type',
         'iec_complete',
         'iec_remarks',
         'iec_validity',
@@ -59,6 +63,15 @@ class ManageIec extends Model
         'iec_q_re_wallet_amt',
         'iec_completed_by',
     ];
+    public $timestamps = false;
+    public function subWork()
+    {
+        return $this->hasOne(SubWorkCategory::class, 'sub_work_id', 'iec_q_sub_work');
+    }
+    public function work()
+    {
+        return $this->hasOne(WorkCategory::class, 'work_id', 'iec_q_work');
+    }
 }
 
 

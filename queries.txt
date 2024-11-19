@@ -13,3 +13,20 @@ ALTER TABLE `sub_work_category` ADD `sub_work_validity_status` TINYINT NOT NULL 
 ALTER TABLE `sub_work_category` CHANGE `sub_work_id` `sub_work_id` INT NOT NULL AUTO_INCREMENT, add PRIMARY KEY (`sub_work_id`);
 
 ALTER TABLE `sub_work_category` ADD `status_id` INT NULL AFTER `sub_work_alert_days`;
+
+
+ALTER TABLE `manage_iec` CHANGE `iec_q_id` `iec_q_id` INT NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `manage_iec` ADD `iec_q_work_type` TINYINT NOT NULL AFTER `iec_q_sub_work`;
+
+
+ALTER TABLE `manage_iec` CHANGE `iec_q_deleted_on` `iec_q_deleted_on` VARCHAR(20) NULL DEFAULT NULL;
+
+ALTER TABLE `manage_iec` CHANGE `iec_q_modified_by` `iec_q_modified_by` INT NULL DEFAULT NULL;
+ALTER TABLE `manage_iec` CHANGE `iec_q_modified_on` `iec_q_modified_on` INT NULL DEFAULT NULL;
+ALTER TABLE `manage_iec` CHANGE `iec_q_deleted_by` `iec_q_deleted_by` INT NULL DEFAULT NULL;
+ALTER TABLE `manage_iec` CHANGE `iec_q_deleted_on` `iec_q_deleted_on` INT NULL DEFAULT NULL;
+ALTER TABLE `manage_iec` ADD `iec_q_discount` INT NULL DEFAULT '0' AFTER `iec_q_expense`;
+
+ALTER TABLE `manage_iec` ADD `iec_q_office_expense` INT NOT NULL DEFAULT '0' AFTER `iec_q_expense`;
+ALTER TABLE `manage_iec` ADD `iec_online_payment_gothrough` VARCHAR(20) NULL AFTER `iec_online_payment`;

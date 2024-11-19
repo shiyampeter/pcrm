@@ -1,5 +1,6 @@
 <?php
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\IecMiniController;
 use App\Http\Controllers\Api\masters\StatusController;
 use App\Http\Controllers\Api\masters\SubWorkCategoryController;
 use App\Http\Controllers\Api\masters\WorkCategoryController;
@@ -45,6 +46,16 @@ Route::group([
     Route::post('subworkCategoryStatus', [StatusController::class, 'createSubWorkCategoryStatus'])->name('createSubWorkCategoryStatus');
     Route::put('subworkCategoryStatus/{id}', [StatusController::class, 'updateSubWorkCategoryStatus'])->name('updateSubWorkCategoryStatus');
     Route::delete('subworkCategoryStatus/{id}', [StatusController::class, 'deleteSubWorkCategoryStatus'])->name('deleteSubWorkCategoryStatus');
+
+
+    Route::get('iecMini', [IecMiniController::class, 'listManageIec'])->name('listManageIec');
+    Route::get('iecMini/{id}', [IecMiniController::class, 'viewManageIec'])->name('viewManageIec');
+    Route::post('iecMini', [IecMiniController::class, 'createManageIec'])->name('createManageIec');
+    Route::post('iecMiniOnline', [IecMiniController::class, 'createManageIecOnline'])->name('createManageIecOnline');
+    Route::put('iecMini/{id}', [IecMiniController::class, 'updateManageIec'])->name('updateManageIec');
+    Route::put('iecMiniOnline/{id}', [IecMiniController::class, 'updateManageIecOnline'])->name('updateManageIecOnline');
+    Route::delete('iecMini/{id}', [IecMiniController::class, 'deleteManageIec'])->name('deleteManageIec');
+
 });
 
 
