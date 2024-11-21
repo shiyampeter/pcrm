@@ -157,6 +157,7 @@ class IecMiniController extends Controller
                     'iec_q_mobile',
                     'iec_q_name',
                     'iec_q_discount',
+                    'iec_q_discount_amount',
                     'iec_online_payment_gothrough',
                     DB::raw('IF(iec_q_work_type = 0, "Mini", "Online") as iec_q_work_type'),
                 )
@@ -192,6 +193,7 @@ class IecMiniController extends Controller
                     'iec_paid',
                     'iec_q_name',
                     'iec_q_discount',
+                    'iec_q_discount_amount',
                     'iec_online_payment_gothrough',
                     DB::raw('"Mini" as iec_q_work_type'),
 
