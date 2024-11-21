@@ -110,7 +110,11 @@ class Controller extends BaseController
     {
         $type = $request->get('type');
         if ($type == 'workCategory') {
-            $workCategory = WorkCategory::where('work_del_status', 0)->select('work_id as value', 'work_name as label')->get();
+            if ($request->get('work_type') == "mini") {
+                $workCategory = WorkCategory::where(['work_del_status' => 0, 'work_type' => 0])->select('work_id as value', 'work_name as label')->get();
+            } else {
+                $workCategory = WorkCategory::where(['work_del_status' => 0, 'work_type' => 1])->select('work_id as value', 'work_name as label')->get();
+            }
             return $this->returnSuccess($workCategory, 'Work Category Retrived Successfully');
         } else if ($type == 'workSubCategory') {
             $subWorkCategory = SubWorkCategory::where(['sub_work_del_status' => 0, 'sub_work_cate_id' => $request->get('work_id')])->select(
