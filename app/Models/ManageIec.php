@@ -29,6 +29,7 @@ class ManageIec extends Model
         'iec_q_feedback',
         'iec_q_amount',
         'iec_q_discount',
+        'iec_q_discount_amount',
         'iec_q_online_payment',
         'iec_online_payment',
         'iec_online_payment_gothrough',
