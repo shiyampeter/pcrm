@@ -283,6 +283,7 @@ class IecMiniController extends Controller
             'iec_paid' => $request->iec_paid,
             'iec_q_name' => $request->iec_q_name,
             'iec_q_discount' => $request->iec_q_discount,
+            'iec_q_discount_amount' => $request->iec_q_discount_amount,
             'iec_online_payment_gothrough' => $request->iec_online_payment_gothrough
         ];
     }
